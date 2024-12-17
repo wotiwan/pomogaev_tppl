@@ -1,6 +1,6 @@
-from parser import Parser
-from interpreter import Interpreter
-from Lexer import Lexer
+from interpreter.parser import Parser
+from interpreter.interpreter import Interpreter
+from interpreter.Lexer import Lexer
 inter = Interpreter()
 parser = Parser()
 lexer = Lexer()
@@ -16,19 +16,15 @@ lexer = Lexer()
 #     print(token)
 #     token = lexer.next()
 
-print(parser.eval("BEGIN BEGIN a:=5-1 * (2 + 4); END; BEGIN END; END."))
-print(inter.eval("BEGIN BEGIN a:= 5-1 * (2 + 4); END; BEGIN END; END."))
+# print(inter.eval("BEGIN 2++_+2 END."))
+#
+# print(parser.eval("BEGIN BEGIN a:=5-1 * (2 + 4); END; BEGIN END; END."))
+# print(inter.eval("BEGIN BEGIN a:= 5-1 * (2 + 4); END; BEGIN END; END."))
 
 print(inter.eval("""
 BEGIN
-    y := 2;
-    BEGIN
-        a := 3;
-        a := a;
-        b := 10 + a + 10 * y / 4;
-        c := a - b;
-    END;
-    x := 11;
+    ABOBA := 5+5;
+    aboba := 12-7;
 END.
 """))
 

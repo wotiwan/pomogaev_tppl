@@ -1,4 +1,4 @@
-from _token import Token, TokenType
+from ._token import Token, TokenType
 
 
 class Node:
@@ -10,8 +10,7 @@ class Number(Node):
         self.token = token
 
     def __str__(self):
-        # return f"{self.__class__.__name__} ({self.token})"
-        return f"{self.__class__.__name__} ({self.token.value})"
+        return f"{self.__class__.__name__}({self.token})"
 
 
 class BinOp(Node):
@@ -21,7 +20,7 @@ class BinOp(Node):
         self.right = right
 
     def __str__(self):
-        return f"{self.__class__.__name__} {self.op.value}({self.left}, {self.right})"
+        return f"{self.__class__.__name__}{self.op.value}({self.left}, {self.right})"
 
 
 class UnaryOp(Node):

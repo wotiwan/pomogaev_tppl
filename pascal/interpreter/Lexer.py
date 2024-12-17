@@ -1,4 +1,4 @@
-from _token import Token, TokenType
+from ._token import Token, TokenType
 
 
 class Lexer():
@@ -41,6 +41,8 @@ class Lexer():
         return result
 
     def init(self, s: str):
+        if len(s) < 1:
+            raise Exception("Syntax Error! Empty input!")
         self._pos = 0
         self._text = s
         self._current_char = self._text[self._pos]

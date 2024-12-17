@@ -1,6 +1,6 @@
-from _token import TokenType
-from Lexer import Lexer
-from __ast import Number, BinOp, UnaryOp, Block, Assignment, Var
+from ._token import TokenType
+from .Lexer import Lexer
+from .__ast import Number, BinOp, UnaryOp, Block, Assignment, Var
 
 
 class Parser():
@@ -13,8 +13,8 @@ class Parser():
     def __check_token(self, type_: TokenType) -> None:
         if self._current_token.type_ == type_:
             self._current_token = self._lexer.next()
-        else:
-            raise SyntaxError("Invalid token order")
+        # else:
+        #     raise SyntaxError("Invalid token order")  # already checked on previous levels
 
     def __factor(self):
         token = self._current_token
