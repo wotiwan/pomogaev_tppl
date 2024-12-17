@@ -31,11 +31,11 @@ class Lexer():
                 self.__forward()
         return result
 
-    # todo: name1 or name_1 won`t be recognized
+    # name1 or name_1 will be recognized, also NAME and name have the same name in pascal!
     def __word(self):
         result = ""
         while (self._current_char is not None and
-               self._current_char.isalpha()):
+               (self._current_char.isalpha() or self._current_char in "1234567890_")):
             result += self._current_char
             self.__forward()
         return result
@@ -55,7 +55,9 @@ class Lexer():
             if self._current_char.isdigit():
                 return Token(TokenType.NUMBER, self.__number())
             if self._current_char.isalpha():
-                word = self.__word()
+                word = self._current_char
+                self.__forward()
+                word += self.__word()  # varname starts only by letter
                 if word == "BEGIN":
                     val = word
                     return Token(TokenType.BEGIN, val)
@@ -63,7 +65,7 @@ class Lexer():
                     val = word
                     return Token(TokenType.END, val)
                 else:
-                    return Token(TokenType.VAR, word)
+                    return Token(TokenType.VAR, word.lower())
             if self._current_char in ['+', '-', '*', '/']:
                 op = self._current_char
                 self.__forward()

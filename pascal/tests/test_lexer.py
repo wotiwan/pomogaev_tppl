@@ -37,7 +37,7 @@ class TestLexer:
         lexer.init("variableName")
         token = lexer.next()
         assert token.type_ == TokenType.VAR
-        assert token.value == "variableName"
+        assert token.value == "variablename"
 
     def test_begin(self, lexer):
         lexer.init("BEGIN")
